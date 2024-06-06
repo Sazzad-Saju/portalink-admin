@@ -1,0 +1,17 @@
+.cross_ic {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    background: gray;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 2;
+    color: #fff;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

@@ -1,0 +1,173 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    top: 100%;
+    min-width: 125px;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+}
+
+.dropdown_menu li a {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.custom_dropdown {
+    position: relative;
+    display: inline-flex;
+    width: 300px;
+    > button {
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 6px 0px;
+        cursor: pointer;
+        width: 300px;
+        > i {
+            margin-right: 5px;
+        }
+        .custom_dropdown_header {
+            display: block;
+            width: 100%;
+            border: 0;
+            background: #fff;
+            border: 1px solid #999;
+            padding: 2px 5px;
+            font-size: 14px;
+            line-height: 18px;
+            color: #343434;
+            appearance: none;
+            border-radius: 0;
+            -webkit-border-radius: 0;
+            text-align: left;
+            position: relative;
+            &:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f0dd";
+                font-size: 18px;
+                font-weight: 600;
+                position: absolute;
+                right: 4px;
+                top: -1px;
+            }
+            &.open {
+                &:before {
+                    font-family: "Font Awesome 5 Free";
+                    content: "\f0de";
+                    font-size: 18px;
+                    font-weight: 600;
+                    position: absolute;
+                    right: 4px;
+                    top: 6px;
+                }
+            }
+            &:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: 0px solid;
+                outline: 0;
+                box-shadow: 0 0 0 1px #2385B3;
+            }
+        }
+    }
+    .dropdown_menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        z-index: 1000;
+        top: 100%;
+        min-width: 175px;
+        font-size: 12px;
+        text-align: left;
+        list-style: none;
+        background-clip: padding-box;
+        padding: 0.5rem;
+        width: 100%;
+        border: 1px solid #999;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 200px;
+        .custom_dropdown_list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            .acc_arrow {
+                position: relative;
+                padding-left: 0;
+                width: 14px;
+                height: 14px;
+                border: 1px solid #999;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:after {
+                    float: left !important;
+                    content: "+";
+                    position: absolute;
+                    left: 2px;
+                    top: 0px;
+                    background: none;
+                    color: #999;
+                    font-weight: 300;
+                }
+                &.open_acc{
+                    &:after {
+                        float: left !important;
+                        content: "";
+                        font-size: 30px;
+                        width: 6px;
+                        height: 1px;
+                        background: #999;
+                        position: absolute;
+                        left: 3px;
+                        top: 6px;
+                    }
+                }
+            }
+        }
+        ul {
+            flex-direction: column;
+            li {
+                a {
+                    padding: 10px 15px;
+                    display: block;
+                    font-size: 15px;
+                    i {
+                        margin-right: 5px;
+                    }
+                }
+                &:last-child {
+                    a {
+                        border-bottom: 1px solid transparent; 
+                    }
+                }
+            }
+        }
+        .default_accrodion {
+            padding-left: 15px;
+        }
+    }
+}
