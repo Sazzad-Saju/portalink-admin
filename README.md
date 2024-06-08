@@ -1,4 +1,4 @@
-# John Meyer
+# PortaLink Admin
 
 ## Project setup
 ```

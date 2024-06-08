@@ -5,6 +5,13 @@ export default {
     };
   },
   methods: {
+    getAllQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return Array.from(params.keys()).reduce(
+        (acc, val) => ({ ...acc, [val]: params.get(val) }),
+        {},
+      );
+    },
     showSuccessMsg(msg) {
       this.$swal.fire({
         position: 'top-right',

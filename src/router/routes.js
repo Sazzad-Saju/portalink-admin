@@ -1,5 +1,7 @@
 import auth from "@/middlewares/auth";
 import guest from "@/middlewares/guest";
+import { settingRoute } from "@/router/setting/settingRoute";
+import { customers } from "@/router/customers/customers";
 
 let routes = [
     {
@@ -23,5 +25,8 @@ let routes = [
         }
     },
 ]
+
+routes.push(...settingRoute);
+routes.push(...customers);
 
 export default routes;
