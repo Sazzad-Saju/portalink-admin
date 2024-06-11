@@ -129,7 +129,7 @@
 
     <div class="item_list_advanced_search mb_20">
       <div class="display_inline mr_0">
-        <router-link :to="{ name: 'customers' }" class="link mr_20 item_color_btn">All Cutomers</router-link>
+        <router-link :to="{ name: 'customers' }" class="link mr_20 item_color_btn">All Customers</router-link>
       </div>
       <div class="float_right">
         <div class="display_inline mr_0">

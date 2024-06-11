@@ -34,6 +34,7 @@ export default {
     async created() {
         await this.axios('/user')
             .then(()=>{
+              
               this.axios('/get/login-user/permission')
                   .then((response) => {
                     localStorage.setItem('permission', JSON.stringify(response.data));

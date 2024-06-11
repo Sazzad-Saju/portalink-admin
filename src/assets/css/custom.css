@@ -1,3 +1,7 @@
 .text-danger{
     color: 	#DC3545;
 }
+
+.col_gray{
+    color: gray!important;
+}

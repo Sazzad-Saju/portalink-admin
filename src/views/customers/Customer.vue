@@ -184,7 +184,7 @@ export default {
         },
         {
           label: "Name",
-          field: "first_name",
+          field: "name",
           sortable: true
         },
         {
@@ -248,6 +248,7 @@ export default {
     }
   },
   created() {
+    
     const query = this.getAllQueryParams()
     if(query.page){
       this.setQueryData(query)
