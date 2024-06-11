@@ -21,4 +21,14 @@ export const customers = [
             ]
         }
     },
+    {
+        path: '/customer/:id',
+        component: () => import(/* webpackChunkName: "customers" */ '../../views/customers/CustomerForm'),
+        name: 'update-customer',
+        meta: {
+            middleware: [
+                auth
+            ]
+        }
+    },
 ]

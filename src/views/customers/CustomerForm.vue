@@ -129,7 +129,7 @@
 
     <div class="item_list_advanced_search mb_20">
       <div class="display_inline mr_0">
-        <!-- <router-link :to="{ name: 'customers' }" class="link mr_20 item_color_btn">All Cutomers</router-link> -->
+        <router-link :to="{ name: 'customers' }" class="link mr_20 item_color_btn">All Cutomers</router-link>
       </div>
       <div class="float_right">
         <div class="display_inline mr_0">
@@ -171,8 +171,8 @@ export default {
     }
   },
   methods: {
-    loadPermissions() {
-      this.axios.get('get/customer-permission').then((response) => {
+    async loadPermissions() {
+      await this.axios.get('get/customer-permission').then((response) => {
         response.data.map((item) => {
           this.tempPermissions.push({
             id: item.id,
@@ -186,7 +186,7 @@ export default {
             name: item.name,
             status: false,
           })
-          
+
         })
       })
     },
@@ -236,11 +236,24 @@ export default {
           this.customer.first_name = customerData.first_name
           this.customer.last_name = customerData.last_name
           this.customer.email = customerData.email
-          this.customer.phone = customerData.phone
-          this.customer.type = customerData.type
-          this.customer.receive_offers = customerData.receive_offers == 1 ? true : false
+          this.customer.username = customerData.username
+          this.customer.status = customerData.status
+          this.customer.type = customerData.typeVal
+          this.customer.permissions = [];
+          this.axios.get('get/customer-permission').then((response) => {
+            response.data.map((item) => {
+              let permit = customerData.permissions.find(p => p.module == item.module);
+              this.customer.permissions.push({
+                id: item.id,
+                module: item.module,
+                name: item.name,
+                status: permit ? true : false,
+              })
+            })
+          })
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e)
           this.showFailMsg("No customer exists!");
         })
         .finally(() => {
@@ -251,14 +264,7 @@ export default {
       this.errors = null;
       this.loading = true;
 
-      let formData = new FormData()
-      formData.append('_method', 'PATCH')
-
-      Object.keys(this.customer).forEach(key => {
-        formData.append(key, this.customer[key] ? this.customer[key] : '');
-      })
-
-      this.axios.post('/customers/' + this.$route.params.id, formData)
+      this.axios.patch('/customers/' + this.$route.params.id, this.customer)
         .then(() => {
           this.showSuccessMsg("Customer Update Successfully!");
           if (this.$route.params.id) {

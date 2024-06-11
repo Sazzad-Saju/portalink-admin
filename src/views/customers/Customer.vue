@@ -104,10 +104,6 @@
                 </div>
               </template>
 
-              <template v-slot:company_name="{ row }">
-                {{ row.company_name.length > 22 ? row.company_name.substr(0, 22) + '...' : row.company_name}}
-              </template>
-
               <template v-slot:email="{ row }">
                 {{ row.email.length > 22 ? row.email.substr(0, 22) + '...' : row.email}}
               </template>
@@ -119,39 +115,10 @@
                 </div>
               </template>
 
-              <template v-slot:ein_path="{ row }">
-                <span v-if="row.ein_path" class="color_green" @click.prevent="showDownloadFile(row.ein_path)">EIN</span>
-              </template>
-
-              <template v-slot:points="{ row }">
-                {{ row.points.toFixed(2) }}
-              </template>
-
               <template v-slot:status="{ row }">
                 <div class="custom_checkbox">
                   <input type="checkbox" :id="'status_'+row.id" :checked="row.status" :value="row.status"  />
                   <label :for="'status_'+row.id" @click.prevent="changeStatus($event, row)"></label>
-                </div>
-              </template>
-
-              <template v-slot:verified="{ row }">
-                <div class="custom_checkbox">
-                  <input type="checkbox" :id="'verified_'+row.id" :checked="row.verified" :value="row.verified"  />
-                  <label :for="'verified_'+row.id" @click.prevent="changeVerify($event, row)"></label>
-                </div>
-              </template>
-
-              <template v-slot:mailing_list="{ row }">
-                <div class="custom_checkbox">
-                  <input type="checkbox" :id="'mailing_list_'+row.id" :checked="row.mailing_list" :value="row.mailing_list"  />
-                  <label :for="'mailing_list_'+row.id" @click.prevent="changeMailing($event, row)"></label>
-                </div>
-              </template>
-
-              <template v-slot:text_block="{ row }">
-                <div class="custom_checkbox">
-                  <input type="checkbox" :id="'text_block_'+row.id" :checked="row.text_block" :value="row.text_block"  />
-                  <label :for="'text_block_'+row.id" @click.prevent="changeTextBlock($event, row)"></label>
                 </div>
               </template>
 
@@ -369,48 +336,6 @@ export default {
     changeStatus($e, row){
       this.update.status = row.status
       this.axios.post('/customer/status/'+row.id, this.update)
-          .then(() => {
-            this.loadData();
-            this.showSuccessMsg("Update Successfully!");
-          })
-          .catch((err) => {
-            this.errors = err.response.data.errors
-          })
-          .finally(() => {
-            this.loading = false;
-          })
-    },
-    changeVerify($e, row){
-      this.update.verified = row.verified
-      this.axios.post('/customer/verified/'+row.id, this.update)
-          .then(() => {
-            this.loadData();
-            this.showSuccessMsg("Update Successfully!");
-          })
-          .catch((err) => {
-            this.errors = err.response.data.errors
-          })
-          .finally(() => {
-            this.loading = false;
-          })
-    },
-    changeMailing($e, row){
-      this.update.mailing_list = row.mailing_list
-      this.axios.post('/customer/mailing-list/'+row.id, this.update)
-          .then(() => {
-            this.loadData();
-            this.showSuccessMsg("Update Successfully!");
-          })
-          .catch((err) => {
-            this.errors = err.response.data.errors
-          })
-          .finally(() => {
-            this.loading = false;
-          })
-    },
-    changeTextBlock($e, row){
-      this.update.text_block = row.text_block
-      this.axios.post('/customer/text-block/'+row.id, this.update)
           .then(() => {
             this.loadData();
             this.showSuccessMsg("Update Successfully!");
