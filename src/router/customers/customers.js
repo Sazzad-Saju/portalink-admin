@@ -1,4 +1,5 @@
 import auth from "@/middlewares/auth";
+import admin from "@/middlewares/admin";
 
 export const customers = [
     {
@@ -7,7 +8,7 @@ export const customers = [
         name: 'create-customer',
         meta: {
             middleware: [
-                auth
+                auth, admin
             ]
         }
     },
@@ -17,7 +18,7 @@ export const customers = [
         name: 'customers',
         meta: {
             middleware: [
-                auth
+                auth, admin
             ]
         }
     },
@@ -27,7 +28,7 @@ export const customers = [
         name: 'update-customer',
         meta: {
             middleware: [
-                auth
+                auth, admin
             ]
         }
     },

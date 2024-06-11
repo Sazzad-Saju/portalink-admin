@@ -1,4 +1,5 @@
 import auth from "../../middlewares/auth";
+import admin from "@/middlewares/admin";
 export const settingRoute = [
     {
         path: '/banner/logos',
@@ -6,7 +7,7 @@ export const settingRoute = [
         name: 'banner_logos',
         meta: {
             middleware: [
-                auth
+                auth, admin
             ]
         }
     },
